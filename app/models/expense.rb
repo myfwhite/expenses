@@ -1,6 +1,10 @@
 class Expense < ActiveRecord::Base
   belongs_to :user
 
+  validates_presence_of :expense_number, :user, :filename
+  validates_associated :user
+  validates_numericality_of :expense_number, '>' => 1
+
   def display_type
     @inline_types = ['application/pdf', 'text/plain', 'image/gif', 'image/jpeg', 'image/png']
     @inline_types.each do |type|

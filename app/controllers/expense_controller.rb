@@ -20,14 +20,14 @@ class ExpenseController < ApplicationController
   end
 
   def create
-    @expense = Expense.new
-    @expense.uploaded_file = params[:new][:file]
-    @expense.user_id = session[:user][:id]
-    @expense.expense_number = params[:new][:expense_number]
+    @expense = Expense.new(params[:expense])
+    #@expense.uploaded_file = params[:file]
+    @expense.user = session[:user]
+    @expense.expense_number = params[:expense_number]
 
     if @expense.save
       flash[:notice] = "Thank you for your submission"
-      redirect_to :action => "index"
+      redirect_to :expenses
     else
       flash[:error] = "There was a problem with your submission"
     end
@@ -48,18 +48,18 @@ class ExpenseController < ApplicationController
     
     if expense_number < 1
       flash[:notice] = "Expense number cannot be blank"
-      redirect_to :action => 'search'
+      redirect_to :search_expenses
     else
       if @expense = Expense.find(:first, :conditions => ["expense_number = ?", expense_number])
-        if session[:user][:is_admin] || session[:user][:id] == @expense[:user_id]
-          redirect_to :action => 'show', :id => @expense.id
+        if session[:user].is_admin? || session[:user] == @expense.user
+          redirect_to expense_url(@expense)
         else
           flash[:error] = "No expense file found for #{expense_number}"
-          redirect_to :action => 'search'
+          redirect_to :search_expenses
         end
       else
         flash[:notice] = "No expense file found for #{expense_number}"
-        redirect_to :action => 'search'
+        redirect_to :search_expenses
       end
     end
   end

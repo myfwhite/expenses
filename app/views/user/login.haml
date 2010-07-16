@@ -1,14 +1,13 @@
 -if logged_in?
   = render 'expense/options'
-- form_tag 'authenticate' do
+- form_for :user, @user, :url => {:action => :authenticate} do |f|
   .field
-    = label_tag(:username, "Username")
+    = label(:username, "Username")
     %br
-    = text_field(:login, "username")
+    = f.text_field "username"
   .field
-    = label_tag(:password, "Password")
+    = label(:password, "Password")
     %br
-    = password_field(:login, "password")
+    = f.password_field "password"
   .actions
-    = submit_tag("Login")
-
+    = f.submit "Login"

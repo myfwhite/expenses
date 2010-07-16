@@ -5,4 +5,4 @@
   %dt User
   %dd= @expense.user.username
   %dt Expense file
-  %dd= link_to "#{@expense.filename}", :controller => 'expense', :action => 'download' , :id => @expense
+  %dd= link_to "#{@expense.filename}", :action => 'download' , :id => @expense

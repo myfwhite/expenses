@@ -1,12 +1,13 @@
 = render 'expense/options'
-- form_tag 'create', :multipart => true do
+- error_messages_for :expense
+- form_for :expense, @expense do |f|
   .field
-    = label_tag(:expense_number, "Expense number")
+    = label(:expense_number, "Expense number")
     %br
-    = text_field(:new, "expense_number")
+    = f.text_field 'expense_number'
   .field
-    = label_tag(:file, "File")
+    = label(:uploaded_file, "File")
     %br
-    = file_field(:new, 'file')
+    = f.file_field 'uploaded_file'
   .actions
-    = submit_tag "Upload"
+    = f.submit 'Upload'

@@ -1,8 +1,9 @@
 = render 'expense/options'
-- form_tag 'search_results' do
+- error_messages_for :expense
+- form_for :expense, @expense, :url => 'search_results' do |f|
   .field
-    = label_tag(:expense_number, "Expense number")
+    = label(:expense_number, "Expense number")
     %br
-    = text_field(:search, "expense_number")
+    = f.text_field "expense_number"
   .actions
-    = submit_tag("Search")
+    = f.submit "Search"
