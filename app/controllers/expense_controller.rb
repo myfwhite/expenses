@@ -43,10 +43,10 @@ class ExpenseController < ApplicationController
   end
 
   def search_results
-    expense_number = params[:search][:expense_number].to_i
+    @expense = Expense.new(params[:expense])
     @title = 'Search results'
     
-    if expense_number < 1
+    if @expense.expense_number.to_i < 1
       flash[:notice] = "Expense number cannot be blank"
       redirect_to :search_expenses
     else

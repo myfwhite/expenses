@@ -1,6 +1,6 @@
 = render 'expense/options'
 - error_messages_for :expense
-- form_for :expense, @expense, :url => 'search_results' do |f|
+- form_for 'search_results', @expense, :html => {:method => :get} do |f|
   .field
     = label(:expense_number, "Expense number")
     %br
