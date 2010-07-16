@@ -1,0 +1,8 @@
+= render 'expense/options'
+- form_tag 'search_results' do
+  .field
+    = label_tag(:expense_number, "Expense number")
+    %br
+    = text_field(:search, "expense_number")
+  .actions
+    = submit_tag("Search")

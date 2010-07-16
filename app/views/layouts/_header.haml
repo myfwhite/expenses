@@ -1,0 +1,8 @@
+.round#header
+  %ul.navigation.round
+    -if logged_in?
+      %li= session[:user].username
+      %li= link_to "logout", "/user/logout"
+    - else
+      %li= link_to "login", "/user/login"
+

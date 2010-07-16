@@ -1,0 +1,8 @@
+= render 'expense/options'
+%dl
+  %dt Expense number
+  %dd= @expense.id
+  %dt User
+  %dd= @expense.user.username
+  %dt Expense file
+  %dd= link_to "#{@expense.filename}", :controller => 'expense', :action => 'download' , :id => @expense

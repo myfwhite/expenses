@@ -1,0 +1,12 @@
+= render 'expense/options'
+- form_tag 'create', :multipart => true do
+  .field
+    = label_tag(:expense_number, "Expense number")
+    %br
+    = text_field(:new, "expense_number")
+  .field
+    = label_tag(:file, "File")
+    %br
+    = file_field(:new, 'file')
+  .actions
+    = submit_tag "Upload"

@@ -1,0 +1,15 @@
+!!! Strict
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title= title
+    = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+    = stylesheet_link_tag 'custom', :media => 'screen'
+  %body
+    .container
+      = render 'layouts/header'
+      #content.round
+        %h2= heading
+        - flash.each do |key, value|
+          %div{:class => "flash #{key}"}= value
+        = yield
+      = render 'layouts/footer'

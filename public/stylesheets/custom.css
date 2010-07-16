@@ -1,0 +1,139 @@
+.container {
+  width: 710px;
+}
+body {
+  background: #D1ECF6;
+}
+#header {
+  padding-top: 20px;
+}
+#header img {
+  padding: 1em;
+  background: #fff;
+}
+#content {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+}
+/* Links */
+a {
+  color: #09c;
+  text-decoration: none;
+}
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+a:visited {
+  color: #069;
+}
+/* Navigation */
+.navigation {
+  float: right;
+}
+.navigation {
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+ul.navigation {
+  margin: 0;
+}
+.navigation li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+.navigation li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+.navigation li a:visited {
+  color: #09c;
+}
+.navigation li a:hover {
+  text-decoration: underline;
+}
+/* Sign up button */
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #4A5DDF;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius: 5px;
+}
+/* Footer */
+#footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#footer .navigation {
+  float: none;
+}
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+th {
+  background: #D1ECF6;
+
+}
+td {
+  border-bottom: 1px solid #D1ECF6;
+}
+table {
+  border-bottom: 1px solid #D1ECF6;
+}
+#actions {
+  padding: 0 0 2em 0;
+  white-space: nowrap;
+}
+#actions {
+  margin: 0;
+}
+#actions li {
+  display: inline-block;
+  padding: 0.2em 2em;
+  text-align: center;
+  color: #fff;
+  background: #D1ECF6;
+}
+#actions li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+#actions li a:visited {
+  color: #09c;
+}
+#actions li a:hover {
+  text-decoration: none;
+  color: #000;
+}
+dl {
+ width:100%;
+ overflow:hidden;
+}
+dt {
+ float:left;
+ width:20%; /* adjust the width; make sure the total of both is 100% */
+}
+dd {
+ float:left;
+ width:70%; /* adjust the width; make sure the total of both is 100% */
+}
