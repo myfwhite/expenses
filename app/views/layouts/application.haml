@@ -11,5 +11,7 @@
         %h2= heading
         - flash.each do |key, value|
           %div{:class => "flash #{key}"}= value
+        -if logged_in?
+          = render 'expenses/options'
         = yield
       = render 'layouts/footer'

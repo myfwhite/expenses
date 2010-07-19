@@ -1,9 +1,0 @@
-= render 'expense/options'
-- error_messages_for :expense
-- form_for 'search_results', @expense, :html => {:method => :get} do |f|
-  .field
-    = label(:expense_number, "Expense number")
-    %br
-    = f.text_field "expense_number"
-  .actions
-    = f.submit "Search"

@@ -1,0 +1,13 @@
+- error_messages_for :expense
+- form_for Expense.new, :html =>{ :multipart => true } do |f|
+  = f.hidden_field :user_id, :value => current_user.id
+  .field
+    = label(:expense_number, "Expense number")
+    %br
+    = f.text_field 'expense_number'
+  .field
+    = label(:uploaded_file, "File")
+    %br
+    = f.file_field 'uploaded_file'
+  .actions
+    = f.submit 'Upload'

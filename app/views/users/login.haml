@@ -1,0 +1,11 @@
+- form_for :user, @user, :url => {:action => :authenticate} do |f|
+  .field
+    = label(:username, "Username")
+    %br
+    = f.text_field "username"
+  .field
+    = label(:password, "Password")
+    %br
+    = f.password_field "password"
+  .actions
+    = f.submit "Login"

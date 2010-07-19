@@ -3,7 +3,13 @@ class Expense < ActiveRecord::Base
 
   validates_presence_of :expense_number, :user, :filename
   validates_associated :user
-  validates_numericality_of :expense_number, '>' => 1
+  validates_numericality_of :expense_number
+
+  def self.search(search_params)
+    if search_params[:user]
+      find_all_by_user_id(search_params[:user].id, :order => "created_at DESC")
+    end
+  end
 
   def display_type
     @inline_types = ['application/pdf', 'text/plain', 'image/gif', 'image/jpeg', 'image/png']
@@ -11,6 +17,10 @@ class Expense < ActiveRecord::Base
       return 'inline' if type == self.content_type
     end
     'downloaded'
+  end
+
+  def send_data_details
+    {:filename => this.filename, :type => this.content_type, :disposition => this.display_type}
   end
 
   def uploaded_file=(incoming_file)

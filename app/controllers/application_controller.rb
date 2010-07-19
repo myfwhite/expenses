@@ -6,22 +6,26 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :password
 
-  helper_method :logged_in?
-  
+  helper_method :logged_in?, :current_user
+
+  def current_user
+    @current_user ||= ((session[:user_id] && User.find(session[:user_id])) || 0)
+  end
+
   def logged_in?
-      session[:user]
+      current_user != 0
   end
 
   def check_authentication
     unless logged_in?
       flash[:notice] = "You need to login to do that"
-      redirect_to :controller => 'user', :notice => "You need to log in to do that"
+      redirect_to :controller => 'users', :notice => "You need to log in to do that"
     end
   end
 
   def index
-    redirect_to :controller => 'user'
+    redirect_to :controller => 'users'
   end
 end
