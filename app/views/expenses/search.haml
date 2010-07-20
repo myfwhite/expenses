@@ -1,12 +1,7 @@
-- error_messages_for :expense
-- form_for :expenses, @expense do |f|
+- form_for :expense, @expense, :url => search_results_expenses_path, :html => {:method => "get"} do |f|
   .field
     = label(:expense_number, 'Expense number')
     %br
     = f.text_field 'expense_number'
-  - if current_user.is_admin?
-    = label(:username, 'Employee')
-    %br
-    = f.text_field 'username'
   .actions
     = f.submit 'Search'

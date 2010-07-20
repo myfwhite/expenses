@@ -23,16 +23,28 @@ class ExpensesController < ApplicationController
       redirect_to :expenses
     else
       flash[:error] = "There was a problem with your submission"
+      redirect_to new_expense_path
     end
   end
 
   def index
     @title = 'Expenses'
-    Expense.search({:user => current_user})
+    @expenses = Expense.search_by_current_user(current_user)
   end
 
   def search
     @title = 'Search expenses'
+    @expense = Expense.find(:first)
+  end
+
+  def search_results
+    search_params = params[:expense].merge({:user => current_user})
+    if @expense = Expense.search_by_expense_number(search_params)
+      redirect_to expense_path(@expense)
+    else
+      flash[:notice] = "No expense matches your search parameters"
+      redirect_to search_expenses_path
+    end
   end
 
 end

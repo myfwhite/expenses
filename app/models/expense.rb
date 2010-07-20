@@ -5,10 +5,30 @@ class Expense < ActiveRecord::Base
   validates_associated :user
   validates_numericality_of :expense_number
 
-  def self.search(search_params)
-    if search_params[:user]
-      find_all_by_user_id(search_params[:user].id, :order => "created_at DESC")
+  def authorised_for?(current_user)
+    true if (current_user.is_admin? || user == current_user)
+  end
+  
+  def self.search_by_current_user(user)
+    search_by_user(user,user)
+  end
+
+  # admin users can view any other users' expenses
+  # other users can only view their own expenses
+  def self.search_by_user(user,current_user)
+    if current_user.is_admin? || user = current_user
+      find_all_by_user_id(user.id, :order => "created_at DESC")
     end
+  end
+
+  # given params with an expense_number and the current user
+  # return the expense with that expense number.
+  # if it doesn't exist, or the current_user is not authorised, then
+  # return nil
+  def self.search_by_expense_number(params)
+    return nil unless params[:expense_number]
+    expense = find_by_expense_number(params[:expense_number])
+    expense if expense && expense.authorised_for?(params[:user])
   end
 
   def display_type
